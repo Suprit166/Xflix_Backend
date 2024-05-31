@@ -1,11 +1,11 @@
 const { router } = require("../app");
 
-
+router
 
 .get('/', validate(videoValidation.searchVideos), videoController.getVideos);
 
 
-.post('/', validate(videoValidation.addVideo), videoController.addVideo)
+router.post('/', validate(videoValidation.addVideo), videoController.addVideo)
 
 
 
