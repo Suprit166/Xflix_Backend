@@ -1,7 +1,7 @@
-// const Joi = require("../utils/values");
+const Joi = require("joi");
 const customValidator = require("./custom.validation");
 const Values = require("../utils/values");
-const { param } = require("../app");
+// const { param } = require("../app");
 
 
 const addVideo = {
@@ -21,7 +21,7 @@ const addVideo = {
 const searchVideos = {
     query: Joi.object().keys({
         title: Joi.string(),
-        genres: Joi.stringArray().items(Joi.string().valid(...Values.genres, "All")),
+        genres: Joi.array().items(Joi.string().valid(...Values.genres, "All")),
         contentRating: Joi.string().valid(...Values.contentRatings, "All"),
         sortBy: Joi.string().valid(...Values.sortBy)
     })
@@ -35,7 +35,7 @@ const updateVotes = {
     }),
     body: Joi.object().keys({
         vote: Joi.string().required().valid(...Values.updateVoteTypes),
-        change: joi.string().required().valid(...Values.changeVoteTypes)
+        change: Joi.string().required().valid(...Values.changeVoteTypes)
     })
 }
 
